@@ -9,3 +9,7 @@ In this phase, I added a hunger property and a feed() method to the Pet class. I
 # Phase 3
 
 In this phase, I created a dynamic sanctuary where users can add pets with different names and types. Each pet has its own card, hunger level, and Feed button. The Pet class makes managing multiple pets easier because each instance stores its own data and uses the same methods.
+
+# Phase 4
+
+In this phase, I tested adding and feeding multiple pets and fixed the hunger limit using Math.max() so hunger cannot go below zero. I verified that each pet has independent hunger. Event delegation was a useful improvement to learn about, although my existing event listeners work for this project.
