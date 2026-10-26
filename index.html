@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Pet Sanctuary</title>
+</head>
+<body>
+    <h1>Virtual Pet Sanctuary</h1>
+
+    <h2>Pikpik the Bunny</h2>
+    <p>Hunger: <span id="hunger">50</span></p>
+    <button id="feedButton">Feed Pet</button>
+
+    <script>
+        class Pet {
+            constructor(name, type) {
+                this.name = name;
+                this.type = type;
+                this.hunger = 50;
+            }
+
+            describe() {
+                return `I am a ${this.type} named ${this.name}.`;
+            }
+
+            feed() {
+                this.hunger -= 10;
+            }
+        }
+
+        const pet1 = new Pet("Pikpik", "Bunny");
+        const pet2 = new Pet("Nova", "Dog");
+
+        const hungerDisplay = document.getElementById("hunger");
+        const feedButton = document.getElementById("feedButton");
+
+        feedButton.addEventListener("click", () => {
+            pet1.feed();
+            hungerDisplay.textContent = pet1.hunger;
+        });
+    </script>
+</body>
+</html>
