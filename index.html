@@ -8,9 +8,18 @@
 <body>
     <h1>Virtual Pet Sanctuary</h1>
 
-    <h2>Pikpik the Bunny</h2>
-    <p>Hunger: <span id="hunger">50</span></p>
-    <button id="feedButton">Feed Pet</button>
+    <input type="text" id="petName" placeholder="Enter pet name">
+
+    <select id="petType">
+        <option value="Bunny">Bunny</option>
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+        <option value="Bird">Bird</option>
+    </select>
+
+    <button id="addPetButton">Add Pet</button>
+
+    <div id="sanctuary"></div>
 
     <script>
         class Pet {
@@ -32,12 +41,52 @@
         const pet1 = new Pet("Pikpik", "Bunny");
         const pet2 = new Pet("Nova", "Dog");
 
-        const hungerDisplay = document.getElementById("hunger");
-        const feedButton = document.getElementById("feedButton");
+        const sanctuary = document.getElementById("sanctuary");
+        const petNameInput = document.getElementById("petName");
+        const petTypeInput = document.getElementById("petType");
+        const addPetButton = document.getElementById("addPetButton");
 
-        feedButton.addEventListener("click", () => {
-            pet1.feed();
-            hungerDisplay.textContent = pet1.hunger;
+        function addPet(name, type) {
+            const pet = new Pet(name, type);
+
+            const card = document.createElement("div");
+            const title = document.createElement("h2");
+            const description = document.createElement("p");
+            const hungerDisplay = document.createElement("p");
+            const feedButton = document.createElement("button");
+
+            title.textContent = pet.name;
+            description.textContent = pet.describe();
+            hungerDisplay.textContent = `Hunger: ${pet.hunger}`;
+            feedButton.textContent = "Feed";
+
+            feedButton.addEventListener("click", () => {
+                pet.feed();
+                hungerDisplay.textContent = `Hunger: ${pet.hunger}`;
+            });
+
+            card.appendChild(title);
+            card.appendChild(description);
+            card.appendChild(hungerDisplay);
+            card.appendChild(feedButton);
+
+            sanctuary.appendChild(card);
+        }
+
+        addPet("Pikpik", "Bunny");
+        addPet("Nova", "Dog");
+
+        addPetButton.addEventListener("click", () => {
+            const name = petNameInput.value.trim();
+            const type = petTypeInput.value;
+
+            if (name === "") {
+                alert("Please enter a pet name.");
+                return;
+            }
+
+            addPet(name, type);
+            petNameInput.value = "";
         });
     </script>
 </body>
